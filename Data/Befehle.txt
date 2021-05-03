@@ -1,0 +1,40 @@
+
+
+###### SELECT
+
+Alle Datensätze
+SELECT * FROM aqData;
+
+Alle DS in Range
+SELECT * FROM aqData WHERE (lat BETWEEN 49 AND 50) AND (lng BETWEEN 6 AND 7); 
+
+Alle Datensätze zwischen 2 datums
+SELECT * FROM aqData WHERE date BETWEEN Datetime('2019-11-19 00:00:00') AND datetime('2019-11-19 23:59:59');
+
+Alle Datensätze von gestern bis jetzt
+SELECT * FROM aqData WHERE date BETWEEN Datetime('now', '-1 day') AND datetime('now', '+1 day');
+
+Average (min/max)
+SELECT avg(ppm) FROM aqData;
+
+###### Insert
+insert into aqdata (lat, lng, date, ppm, address, mac, deprecatedValue) VALUES (49.4, 6.7, datetime('now'), 350, 'add', 'mac', 'false');
+
+###### Update Values
+
+Alte Values als DEPRECATEDVALUE markieren
+UPDATE aqData Set deprecatedValue = 'true' where date < Datetime('now');
+
+
+
+
+###### DUMP
+.output data.sql
+.dump
+.exit
+
+.read data.sql
+
+.schema
+
+

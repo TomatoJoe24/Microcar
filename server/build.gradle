@@ -1,0 +1,69 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.0.BUILD-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'application'
+    id 'java'
+}
+
+mainClassName = 'de.htwsaar.server.ServerApplication'
+
+group 'de.htwsar'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+bootJar {
+    launchScript()
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(":common")
+    //compile("org.springframework.boot:spring-boot-starter-web")
+    //compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    //compile("org.springframework.boot:spring-boot-devtools")
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // https://mvnrepository.com/artifact/org.javatuples/javatuples
+    implementation group: 'org.javatuples', name: 'javatuples', version: '1.2'
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+
+    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.28.0'
+
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20190722'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
